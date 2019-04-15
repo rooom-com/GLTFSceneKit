@@ -954,6 +954,7 @@ public class GLTFUnarchiver {
         let material = SCNMaterial()
         self.materials[index] = material
         
+        material.setValue(glMaterial.name, forKey: "name")
         material.setValue(Float(1.0), forKey: "baseColorFactorR")
         material.setValue(Float(1.0), forKey: "baseColorFactorG")
         material.setValue(Float(1.0), forKey: "baseColorFactorB")

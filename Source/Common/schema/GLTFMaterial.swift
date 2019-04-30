@@ -42,10 +42,10 @@ struct GLTFMaterial: GLTFPropertyProtocol {
     get { return self._alphaMode ?? "OPAQUE" }
   }
 
-  let _alphaCutoff: Float?
+  let _alphaCutOff: Float?
   /** Specifies the cutoff threshold when in `MASK` mode. If the alpha value is greater than or equal to this value then it is rendered as fully opaque, otherwise, it is rendered as fully transparent. A value greater than 1.0 will render the entire material as fully transparent. This value is ignored for other modes. */
-  var alphaCutoff: Float {
-    get { return self._alphaCutoff ?? 0.5 }
+  var alphaCutOff: Float {
+    get { return self._alphaCutOff ?? 0.5 }
   }
 
   let _doubleSided: Bool?
@@ -64,7 +64,7 @@ struct GLTFMaterial: GLTFPropertyProtocol {
     case emissiveTexture
     case _emissiveFactor = "emissiveFactor"
     case _alphaMode = "alphaMode"
-    case _alphaCutoff = "alphaCutoff"
+    case _alphaCutOff = "alphaCutOff"
     case _doubleSided = "doubleSided"
   }
 }

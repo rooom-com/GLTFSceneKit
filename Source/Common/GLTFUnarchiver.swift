@@ -964,7 +964,7 @@ public class GLTFUnarchiver {
         material.setValue(glMaterial.emissiveFactor[0], forKey: "emissiveFactorR")
         material.setValue(glMaterial.emissiveFactor[1], forKey: "emissiveFactorG")
         material.setValue(glMaterial.emissiveFactor[2], forKey: "emissiveFactorB")
-        material.setValue(glMaterial.alphaCutoff, forKey: "alphaCutoff")
+        material.setValue(glMaterial.alphaCutOff, forKey: "alphaCutOff")
         
         if let pbr = glMaterial.pbrMetallicRoughness {
             material.lightingModel = .physicallyBased
@@ -1054,7 +1054,7 @@ public class GLTFUnarchiver {
             material.writesToDepthBuffer = false
             material.shaderModifiers![.surface] = try! String(contentsOf: URL(fileURLWithPath: Bundle(for: GLTFUnarchiver.self).path(forResource: "GLTFShaderModifierSurface_alphaModeBlend", ofType: "shader")!), encoding: String.Encoding.utf8)
         case "MASK":
-            material.shaderModifiers![.fragment] = try! String(contentsOf: URL(fileURLWithPath: Bundle(for: GLTFUnarchiver.self).path(forResource: "GLTFShaderModifierFragment_alphaCutoff", ofType: "shader")!), encoding: String.Encoding.utf8)
+            material.shaderModifiers![.fragment] = try! String(contentsOf: URL(fileURLWithPath: Bundle(for: GLTFUnarchiver.self).path(forResource: "GLTFShaderModifierFragment_alphaCutOff", ofType: "shader")!), encoding: String.Encoding.utf8)
         default:
             throw GLTFUnarchiveError.NotSupported("loadMaterial: alphaMode \(glMaterial.alphaMode) is not supported")
         }

@@ -1437,7 +1437,7 @@ public class GLTFUnarchiver {
         let glAccessor = accessors[index]
         
         let vectorCount = glAccessor.count
-        guard let usesFloatComponents = usesFloatComponentsMap[glAccessor.componentType] else {
+		guard usesFloatComponentsMap[glAccessor.componentType] != nil else {
             throw GLTFUnarchiveError.NotSupported("loadInverseBindMatrices: user defined accessor.componentType is not supported")
         }
         guard glAccessor.type == "MAT4" else {
@@ -1532,7 +1532,7 @@ public class GLTFUnarchiver {
                 guard let _joints = primitive.geometry?.sources(for: .boneIndices) else {
                     throw GLTFUnarchiveError.DataInconsistent("loadSkin: JOINTS_0 is not defined")
                 }
-                var boneIndices = _joints[0]
+				let boneIndices = _joints[0]
                 print("boneIndices dataStride: \(boneIndices.dataStride)")
                 
                 #if SEEMS_TO_HAVE_SKINNER_VECTOR_TYPE_BUG
@@ -1635,9 +1635,9 @@ public class GLTFUnarchiver {
             scnNode.position = createVector3(glNode.translation)
         }
         
-        if let weights = glNode.weights {
+//        if let weights = glNode.weights {
             // load weights
-        }
+//        }
         
         if let children = glNode.children {
             for child in children {

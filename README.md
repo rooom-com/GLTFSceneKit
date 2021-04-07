@@ -1,7 +1,7 @@
 # GLTFSceneKit
 glTF loader for SceneKit (swift)
 
-![ScreenShot](https://raw.githubusercontent.com/ennikin-skywalker/GLTFSceneKit/master/screenshot.png)
+![ScreenShot](https://raw.githubusercontent.com/rooom-com/GLTFSceneKit/master/screenshot.png)
 
 ## Installation
 ### Using [CocoaPods](http://cocoapods.org/)
@@ -9,7 +9,7 @@ glTF loader for SceneKit (swift)
 Add the following to your [Podfile](http://guides.cocoapods.org/using/the-podfile.html):
 
 ```rb
-pod 'GLTFSceneKit', :git => 'https://github.com/ennikin-skywalker/GLTFSceneKit.git'
+pod 'GLTFSceneKit', :git => 'https://github.com/rooom-com/GLTFSceneKit.git'
 ```
 
 ## Usage

@@ -64,8 +64,12 @@ func createVertexArray(from source: SCNGeometrySource) throws -> [SCNVector3] {
     
     let dummy = SCNVector3()
     var vertices = [SCNVector3](repeating: dummy, count: source.vectorCount)
-    
-    source.data.withUnsafeBytes { (p: UnsafePointer<Float32>) in
+
+	//#warning("testing this upgrade to Swift5")
+    source.data.withUnsafeBytes { p in
+		guard let p = p.baseAddress?.assumingMemoryBound(to: Float32.self) else {
+				return
+			}
         var index = source.dataOffset / 4
         let step = source.dataStride / 4
         for i in 0..<source.vectorCount {
@@ -85,7 +89,10 @@ func createIndexArray(from element: SCNGeometryElement) -> [Int] {
     var indices = [Int]()
     indices.reserveCapacity(indexCount)
     if element.bytesPerIndex == 2 {
-        element.data.withUnsafeBytes { (p: UnsafePointer<UInt16>) in
+        element.data.withUnsafeBytes { p in
+			guard let p = p.baseAddress?.assumingMemoryBound(to: UInt16.self) else {
+					return
+				}
             //var index = 0
             //let step = 2
             for i in 0..<indexCount {
@@ -95,7 +102,10 @@ func createIndexArray(from element: SCNGeometryElement) -> [Int] {
             }
         }
     } else if element.bytesPerIndex == 4 {
-        element.data.withUnsafeBytes { (p: UnsafePointer<UInt32>) in
+        element.data.withUnsafeBytes { p in
+			guard let p = p.baseAddress?.assumingMemoryBound(to: UInt32.self) else {
+					return
+				}
             //var index = 0
             //let step = 4
             for i in 0..<indexCount {
@@ -105,7 +115,10 @@ func createIndexArray(from element: SCNGeometryElement) -> [Int] {
             }
         }
     } else if element.bytesPerIndex == 8 {
-        element.data.withUnsafeBytes { (p: UnsafePointer<UInt64>) in
+        element.data.withUnsafeBytes { p in
+			guard let p = p.baseAddress?.assumingMemoryBound(to: UInt64.self) else {
+					return
+				}
             //var index = 0
             //let step = 8
             for i in 0..<indexCount {

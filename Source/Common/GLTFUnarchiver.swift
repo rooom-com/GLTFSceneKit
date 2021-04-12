@@ -218,10 +218,12 @@ public class GLTFUnarchiver {
             guard let perspective = glCamera.perspective else {
                 throw GLTFUnarchiveError.DataInconsistent("loadCamera: perspective is not defined")
             }
-            camera.yFov = Double(perspective.yfov) * 180.0 / Double.pi
-            if let aspectRatio = perspective.aspectRatio {
-                camera.xFov = camera.yFov * Double(aspectRatio)
-            }
+			// SceneKit automatically calculates the viewing angle in the other direction to match
+			// the aspect ratio of the view displaying the scene camera.fieldOfView = CGFloat(perspective.yfov * 180.0 / Float.pi)
+//            camera.yFov = Double(perspective.yfov) * 180.0 / Double.pi
+//            if let aspectRatio = perspective.aspectRatio {
+//                camera.xFov = camera.yFov * Double(aspectRatio)
+//            }
             camera.zNear = Double(perspective.znear)
             camera.zFar = Double(perspective.zfar ?? Float.infinity)
             

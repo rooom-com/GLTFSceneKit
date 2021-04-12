@@ -1637,9 +1637,9 @@ public class GLTFUnarchiver {
             scnNode.position = createVector3(glNode.translation)
         }
         
-//        if let weights = glNode.weights {
+       if glNode.weights != nil {
             // load weights
-//        }
+        }
         
         if let children = glNode.children {
             for child in children {
